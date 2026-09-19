@@ -63,8 +63,8 @@ Bulky content is organized into on-demand frosted glass modals to keep the homep
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/MohsinAli088/Fulorine-landing-page.git
-cd Fulorine-landing-page
+git clone https://github.com/MohsinAli088/Fluorine-landing-page.git
+cd Fluorine-landing-page
 ```
 
 ### 2. Install Dependencies
