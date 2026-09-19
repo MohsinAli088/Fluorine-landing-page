@@ -874,38 +874,47 @@ function DashboardPreview() {
             {/* Sidebar Navigation */}
             <aside className="rounded-2xl border border-blue-500/15 bg-[#081326] p-4 flex flex-col justify-between">
               <div>
-                <div className="flex items-center gap-2.5 px-3 py-2 text-white font-orbitron font-bold text-xs tracking-wider border-b border-blue-500/20 pb-3 mb-3">
+                <div className="flex items-center gap-2.5 px-3 py-2 text-slate-300 font-inter font-semibold text-xs tracking-wider uppercase border-b border-blue-500/20 pb-3 mb-3">
                   <ShieldCheck className="w-4 h-4 text-blue-400" />
-                  <span>OPERATIONS MATRIX</span>
+                  <span>Operations Matrix</span>
                 </div>
                 <ul className="space-y-1.5">
                   {[
-                    { id: "security", label: "🛡️ Anti-Nuke Sentinel" },
-                    { id: "music", label: "🎵 384k Audio Node" },
-                    { id: "console", label: "⚡ Slash Simulator" },
-                    { id: "telemetry", label: "📊 Node Telemetry" },
-                  ].map((tab) => (
-                    <li key={tab.id}>
-                      <button
-                        type="button"
-                        onClick={() => setActiveTab(tab.id as typeof activeTab)}
-                        className={`w-full text-left px-3.5 py-2.5 rounded-xl font-orbitron text-xs font-semibold tracking-wider transition-all ${
-                          activeTab === tab.id
-                            ? "bg-blue-600 text-white shadow-lg shadow-blue-600/35 border border-blue-400/40"
-                            : "text-slate-400 hover:text-white hover:bg-white/5"
-                        }`}
-                      >
-                        {tab.label}
-                      </button>
-                    </li>
-                  ))}
+                    { id: "security", label: "Anti-Nuke Sentinel", icon: ShieldAlert },
+                    { id: "music", label: "384k Audio Node", icon: Headphones },
+                    { id: "console", label: "Slash Simulator", icon: Terminal },
+                    { id: "telemetry", label: "Node Telemetry", icon: Activity },
+                  ].map((tab) => {
+                    const Icon = tab.icon;
+                    const isActive = activeTab === tab.id;
+                    return (
+                      <li key={tab.id}>
+                        <button
+                          type="button"
+                          onClick={() => setActiveTab(tab.id as typeof activeTab)}
+                          className={`group w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl font-inter text-xs sm:text-[13px] font-medium transition-all duration-200 ${
+                            isActive
+                              ? "bg-blue-600 text-white shadow-lg shadow-blue-600/30 border border-blue-400/40"
+                              : "text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent"
+                          }`}
+                        >
+                          <Icon
+                            className={`w-4 h-4 shrink-0 transition-colors ${
+                              isActive ? "text-white" : "text-slate-400 group-hover:text-blue-400"
+                            }`}
+                          />
+                          <span>{tab.label}</span>
+                        </button>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
 
               <div className="pt-4 border-t border-blue-500/15 mt-4">
-                <div className="flex items-center justify-between text-xs text-slate-400">
-                  <span className="font-mono">Cluster Ping</span>
-                  <span className="flex items-center gap-1.5 text-emerald-400 font-mono font-bold">
+                <div className="flex items-center justify-between text-xs text-slate-400 font-inter">
+                  <span className="font-medium">Cluster Ping</span>
+                  <span className="flex items-center gap-1.5 text-emerald-400 font-mono font-medium">
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse-glow" /> 19ms
                   </span>
                 </div>
